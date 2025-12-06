@@ -262,9 +262,22 @@
     const mobile = document.getElementById("mobile").value.trim();
     const message = document.getElementById("message").value.trim();
 
-    // small client-side guard (doesn't change UI)
+    // basic required fields check
     if (!name || !email || !message) {
-      alert("Please fill name, email and message.");
+      alert("Please fill your name, email and message.");
+      return;
+    }
+
+    // simple email format check
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailPattern.test(email)) {
+      alert("Please enter a valid email address.");
+      return;
+    }
+
+    // basic mobile validation (optional but recommended)
+    if (mobile && (mobile.length < 7 || mobile.length > 15)) {
+      alert("Please enter a valid mobile number.");
       return;
     }
 
